@@ -146,7 +146,6 @@
                 </div>
                 <div class="menu-children hidden">
                     <a href="#" onclick="showSection('data_import', event)" class="sidebar-child">盤點資料轉入</a>
-                    <a href="#" onclick="showSection('data_maintain', event)" class="sidebar-child">個別資產排除維護</a>
                 </div>
 
                 <!-- Menu Category 2 -->
@@ -159,6 +158,7 @@
                 </div>
                 <div class="menu-children hidden">
                     <a href="#" onclick="showSection('setup_period', event)" class="sidebar-child">盤點系統設定</a>
+                    <a href="#" onclick="showSection('setup_period_new', event)" class="sidebar-child">設定盤點期間</a>
                     <a href="#" onclick="showSection('setup_auth', event)" class="sidebar-child">資產類別設定</a>
                 </div>
 
@@ -239,7 +239,6 @@
                 </div>
                 <div class="menu-children hidden">
                     <a href="#" onclick="showSection('query_result', event)" class="sidebar-child">盤點結果查詢 (盤點表)</a>
-                    <a href="#" onclick="showSection('report_diff', event)" class="sidebar-child">盤點差異分析報表</a>
                     <a href="#" onclick="showSection('query_sign', event)" class="sidebar-child">盤點清冊簽核紀錄</a>
                     <a href="#" onclick="showSection('report_history', event)" class="sidebar-child">單一資產歷史盤點查詢</a>
                 </div>
@@ -359,7 +358,7 @@
                                     </td>
                                     <td class="py-3 px-3 border-r border-gray-200">V20260129-01</td>
                                     <td class="py-3 px-3 border-r border-gray-200">
-                                        <button class="bg-[#e46c3b] text-white px-3 py-1.5 rounded text-xs font-bold shadow-sm hover:bg-[#cc5e2e] transition-colors">產生盤點大表</button>
+                                        <button class="bg-[#e46c3b] text-white px-3 py-1.5 rounded text-xs font-bold shadow-sm hover:bg-[#cc5e2e] transition-colors">產生盤點單</button>
                                     </td>
                                     <td class="py-3 px-3 border-r border-gray-200">尚未開始</td>
                                     <td class="py-3 px-3 border-r border-gray-200">1,250</td>
@@ -421,6 +420,39 @@
                     </div>
                 </div>
             </section>
+            
+            <!-- Setup Period New (NEW) -->
+            <section id="setup_period_new" class="content-section">
+                <div class="logic-box">
+                    <h4 class="font-bold text-blue-800 mb-1"><i class="fas fa-calendar-alt mr-2"></i>功能說明：</h4>
+                    <p class="text-sm text-blue-700">定義全公司的年度/專案盤點期間，做為各單位盤點作業的時程依據。</p>
+                </div>
+                <div class="bg-white p-4 md:p-8 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold mb-6 text-gray-700 border-b pb-2">設定盤點期間</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1"><span class="text-red-500">*</span> 盤點年度/專案名稱</label>
+                            <input type="text" placeholder="例: 2026年度盤點" class="w-full border p-2 rounded focus:ring-2 focus:ring-[#e46c3b] outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1"><span class="text-red-500">*</span> 盤點區間</label>
+                            <div class="flex items-center space-x-2">
+                                <input type="date" class="w-full border p-2 rounded focus:ring-2 focus:ring-[#e46c3b] outline-none text-gray-600">
+                                <span class="text-gray-400 font-bold">~</span>
+                                <input type="date" class="w-full border p-2 rounded focus:ring-2 focus:ring-[#e46c3b] outline-none text-gray-600">
+                            </div>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-bold text-gray-700 mb-1">備註說明</label>
+                            <textarea class="w-full border p-2 rounded h-20 resize-none focus:ring-2 focus:ring-[#e46c3b] outline-none"></textarea>
+                        </div>
+                    </div>
+                    <div class="flex justify-end space-x-4 border-t pt-4">
+                        <button class="bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-50 font-bold">取消</button>
+                        <button class="bg-[#cc5e2e] text-white px-6 py-2 rounded hover:bg-[#b55025] font-bold shadow-sm">儲存設定</button>
+                    </div>
+                </div>
+            </section>
 
             <!-- Setup System (Add New Setting Form) -->
             <section id="setup_period_add" class="content-section">
@@ -455,35 +487,6 @@
                         <div class="md:col-span-2">
                             <label class="block font-bold mb-2">備註</label>
                             <textarea class="w-full border border-gray-300 rounded px-3 py-2 h-24 resize-none focus:outline-none focus:ring-1 focus:ring-[#cc5e2e]"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Excluded Assets Table -->
-                    <div class="mb-10">
-                        <button onclick="document.getElementById('exclude_asset_modal').classList.remove('hidden')" class="bg-white border border-gray-400 text-gray-700 px-4 py-2 rounded text-sm hover:bg-gray-50 transition flex items-center font-bold mb-3 shadow-sm">
-                            <i class="fas fa-plus mr-2 text-gray-500"></i> 新增排除資產
-                        </button>
-                        
-                        <div class="border border-gray-300 overflow-x-auto rounded custom-scrollbar">
-                            <table class="min-w-full text-center text-sm text-gray-700 whitespace-nowrap">
-                                <thead class="bg-gray-50 border-b border-gray-300">
-                                    <tr>
-                                        <th class="py-4 px-4 font-bold text-gray-600">NO</th>
-                                        <th class="py-4 px-4 font-bold text-gray-600">資產來源</th>
-                                        <th class="py-4 px-4 font-bold text-gray-600">資產編號</th>
-                                        <th class="py-4 px-4 font-bold text-gray-600">資產名稱</th>
-                                        <th class="py-4 px-4 font-bold text-gray-600">資產管理人</th>
-                                        <th class="py-4 px-4 font-bold text-gray-600">排除原因</th>
-                                        <th class="py-4 px-4 font-bold text-gray-600 w-24">移除</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Empty Data Row -->
-                                    <tr>
-                                        <td colspan="7" class="py-12 text-gray-400">目前尚無排除資產</td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
 
@@ -536,71 +539,7 @@
                     <p class="text-sm text-blue-700">設定「轉入區間」並執行資產轉入。轉入後會產生版本紀錄，盤點單將依據「目前選用」的版本進行作業。</p>
                 </div>
 
-                <!-- Search Block (New Figma Style) -->
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
-                    <!-- Header -->
-                    <div class="px-4 md:px-6 py-4 flex justify-between items-center border-b border-gray-100">
-                        <h3 class="text-[#cc5e2e] font-bold text-lg">搜尋</h3>
-                        <button class="text-[#cc5e2e] w-7 h-7 rounded-full border-2 border-[#cc5e2e] flex items-center justify-center hover:bg-orange-50 transition-colors">
-                            <i class="fas fa-minus text-sm"></i>
-                        </button>
-                    </div>
-                    <!-- Body -->
-                    <div class="p-4 md:p-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-                            <!-- 版本編號 -->
-                            <div>
-                                <label class="block text-xs font-bold text-gray-500 mb-2">版本編號</label>
-                                <input type="text" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#cc5e2e]">
-                            </div>
-                            <!-- 資產來源 -->
-                            <div>
-                                <label class="block text-xs font-bold text-gray-500 mb-2">資產來源</label>
-                                <div class="relative">
-                                    <select class="w-full appearance-none border border-gray-300 rounded px-3 py-2 pr-8 text-sm focus:outline-none focus:ring-1 focus:ring-[#cc5e2e] text-gray-700">
-                                        <option>不限</option>
-                                        <option>列帳資產</option>
-                                    </select>
-                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
-                                        <i class="fas fa-chevron-down text-xs"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 資料區間 -->
-                            <div class="md:col-span-2 lg:col-span-1">
-                                <label class="block text-xs font-bold text-gray-500 mb-2">資料區間</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="text" placeholder="yy-mm-dd" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#cc5e2e]">
-                                    <span class="text-gray-400 font-bold">~</span>
-                                    <input type="text" placeholder="yy-mm-dd" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#cc5e2e]">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                            <!-- 轉入時間 -->
-                            <div class="lg:col-span-1">
-                                <label class="block text-xs font-bold text-gray-500 mb-2">轉入時間</label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="text" placeholder="yy-mm-dd" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#cc5e2e]">
-                                    <span class="text-gray-400 font-bold">~</span>
-                                    <input type="text" placeholder="yy-mm-dd" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#cc5e2e]">
-                                </div>
-                            </div>
-                            <!-- Buttons -->
-                            <div class="lg:col-span-2 flex items-end justify-start lg:justify-end space-x-3 mt-4 lg:mt-0">
-                                <button class="bg-[#e9e4dc] text-gray-700 px-6 py-2.5 rounded text-sm font-bold hover:bg-[#d8d3c5] transition-colors flex items-center">
-                                    <i class="fas fa-search mr-2 text-gray-500 text-xs"></i> 查詢
-                                </button>
-                                <button class="bg-[#f5d8d8] text-gray-700 px-6 py-2.5 rounded text-sm font-bold hover:bg-[#eac4c4] transition-colors flex items-center">
-                                    <i class="fas fa-broom mr-2 text-gray-500 text-xs"></i> 清除
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 執行轉入區塊 (比照上方搜尋區塊版面) -->
+                <!-- 執行轉入區塊 -->
                 <div class="bg-white rounded-lg shadow-sm border border-gray-200 mb-8">
                     <!-- Header -->
                     <div class="px-4 md:px-6 py-4 flex justify-between items-center border-b border-gray-100">
@@ -613,13 +552,20 @@
                     <div class="p-4 md:p-6">
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-end">
                             <div class="lg:col-span-2">
-                                <label class="block text-xs font-bold text-gray-500 mb-2">指定轉入區間 (月) <span class="text-red-500">*</span></label>
-                                <div class="flex items-center space-x-2">
-                                    <input type="text" placeholder="yy-mm" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#1f73b7] text-gray-700">
-                                    <span class="text-gray-400 font-bold">~</span>
-                                    <input type="text" placeholder="yy-mm" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#1f73b7] text-gray-700">
+                                <label class="block text-xs font-bold text-gray-500 mb-2">指定轉入版本 (年月) <span class="text-red-500">*</span></label>
+                                <div class="relative w-full sm:w-1/2">
+                                    <select class="w-full appearance-none border border-gray-300 rounded px-3 py-2 pr-8 text-sm focus:outline-none focus:ring-1 focus:ring-[#1f73b7] text-gray-700">
+                                        <option value="">請選擇版本 (yyyyMM)</option>
+                                        <option value="202601">202601</option>
+                                        <option value="202602">202602</option>
+                                        <option value="202603">202603</option>
+                                        <option value="202604">202604</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                                        <i class="fas fa-chevron-down text-xs"></i>
+                                    </div>
                                 </div>
-                                <p class="mt-2 text-xs text-gray-400">* 系統將自動撈取該區間內的 ERP-列帳資產資料並轉入盤點系統。</p>
+                                <p class="mt-2 text-xs text-gray-400">* 系統將自動撈取該版本的 ERP-列帳資產資料並轉入盤點系統。</p>
                             </div>
                             
                             <!-- Action Buttons -->
@@ -693,85 +639,6 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-            </section>
-
-             <!-- Data Maintain -->
-             <section id="data_maintain" class="content-section">
-                <div class="logic-box">
-                    <h4 class="font-bold text-blue-800 mb-1"><i class="fas fa-filter mr-2"></i>功能說明：</h4>
-                    <p class="text-sm text-blue-700">此為「小範圍」個別資產排除。請先查詢欲排除的資產，勾選後加入下方排除清單。</p>
-                </div>
-                
-                <div class="bg-white p-4 md:p-6 rounded-lg shadow border mb-6">
-                    <h3 class="font-bold mb-4 text-gray-700 border-b pb-2">Step 1: 查詢欲排除之資產</h3>
-                    <div class="flex flex-col lg:flex-row gap-4 mb-4 items-end bg-gray-50 p-4 rounded">
-                        <div class="flex-1 w-full">
-                            <label class="block text-xs text-gray-500 mb-1">資產編號</label>
-                            <input type="text" placeholder="例: 123456..." class="w-full border p-2 rounded focus:ring-2 focus:ring-[#1f73b7] outline-none">
-                        </div>
-                        <div class="flex-1 w-full">
-                            <label class="block text-xs text-gray-500 mb-1">資產名稱關鍵字</label>
-                            <input type="text" placeholder="例: 伺服器" class="w-full border p-2 rounded focus:ring-2 focus:ring-[#1f73b7] outline-none">
-                        </div>
-                        <button class="bg-[#1f73b7] w-full lg:w-auto text-white px-6 py-2 rounded hover:bg-blue-700 whitespace-nowrap"><i class="fas fa-search mr-1"></i> 查詢資產</button>
-                    </div>
-
-                    <!-- Search Result (Mock) -->
-                    <div class="border rounded overflow-x-auto custom-scrollbar">
-                        <div class="bg-gray-100 px-4 py-2 text-xs font-bold text-gray-600">查詢結果 (請勾選欲排除項目)</div>
-                        <table class="min-w-full text-sm whitespace-nowrap">
-                            <thead class="bg-gray-50 border-b">
-                                <tr>
-                                    <th class="p-3 w-10 text-center"><input type="checkbox"></th>
-                                    <th class="p-3 text-left">資產編號</th>
-                                    <th class="p-3 text-left">資產名稱</th>
-                                    <th class="p-3 text-left">保管人</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <tr>
-                                    <td class="p-3 text-center"><input type="checkbox"></td>
-                                    <td class="p-3 font-mono">J1201-01366</td>
-                                    <td class="p-3">ASUS 伺服器 (報廢待審)</td>
-                                    <td class="p-3">陳測試</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 text-center"><input type="checkbox"></td>
-                                    <td class="p-3 font-mono">J1201-01367</td>
-                                    <td class="p-3">HP 列表機 (維修中)</td>
-                                    <td class="p-3">陳測試</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="mt-4 flex flex-col sm:flex-row gap-2 items-center justify-end bg-[#f8f9fa] p-3 rounded">
-                        <input type="text" placeholder="請輸入排除原因 (例: 報廢流程中)" class="border p-2 rounded w-full sm:w-64 focus:ring-2 focus:ring-[#1f73b7] outline-none">
-                        <button class="bg-[#cc5e2e] text-white px-4 py-2 rounded hover:bg-[#b55025] font-bold w-full sm:w-auto whitespace-nowrap"><i class="fas fa-plus-circle mr-1"></i> 加入排除清單</button>
-                    </div>
-                </div>
-
-                <div class="bg-white p-4 md:p-6 rounded-lg shadow border overflow-x-auto custom-scrollbar">
-                    <h3 class="font-bold mb-4 text-[#cc5e2e] border-b pb-2"><i class="fas fa-list-ul mr-2"></i>目前已設定之排除清單</h3>
-                    <table class="min-w-full text-sm border whitespace-nowrap">
-                        <thead class="bg-[#fff4ed]">
-                            <tr>
-                                <th class="p-3 text-left border-b text-[#cc5e2e]">資產編號</th>
-                                <th class="p-3 text-left border-b text-[#cc5e2e]">排除原因</th>
-                                <th class="p-3 text-left border-b text-[#cc5e2e]">設定人</th>
-                                <th class="p-3 text-left border-b text-[#cc5e2e]">功能</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="p-3 border-b font-mono">J1201-99888</td>
-                                <td class="p-3 border-b">總務處借用中(專案列管)</td>
-                                <td class="p-3 border-b">Admin</td>
-                                <td class="p-3 border-b"><button class="text-[#cc5e2e] hover:text-red-700 border border-[#cc5e2e] px-2 py-1 rounded bg-white transition">移除</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </section>
 
@@ -969,14 +836,67 @@
                 
                 <div class="logic-box">
                     <h4 class="font-bold text-[#1f73b7] mb-1"><i class="fas fa-tasks mr-2"></i>功能說明：</h4>
-                    <p class="text-sm text-blue-700">設定盤點範圍、指派蓋章人員，並正式啟用(派發)盤點單。</p>
+                    <p class="text-sm text-blue-700">設定盤點人員及蓋章人員，並正式啟用(派發)盤點單。</p>
+                </div>
+
+                <!-- NEW: 批次設定使用人/保管人 -->
+                <div class="bg-white p-4 md:p-6 rounded-lg shadow border relative overflow-hidden mb-6">
+                    <h3 class="text-lg font-bold mb-4 text-[#1f73b7] flex items-center">
+                        <i class="fas fa-users-cog mr-2"></i>Step 1: 資產人員指派 (設定使用人 / 保管人)
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-4">正式派發盤點單前，請先確認或批次修改資產之使用人與保管人。</p>
+                    
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="text-sm font-bold text-gray-700">待指派資產列表</div>
+                        <div class="flex gap-2">
+                            <button class="border border-[#1f73b7] text-[#1f73b7] px-3 py-1.5 rounded text-xs hover:bg-blue-50 font-bold transition flex items-center">
+                                <i class="fas fa-user-edit mr-1"></i>批次設定使用人
+                            </button>
+                            <button class="border border-[#4ca93c] text-[#4ca93c] px-3 py-1.5 rounded text-xs hover:bg-green-50 font-bold transition flex items-center">
+                                <i class="fas fa-user-shield mr-1"></i>批次設定保管人
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="border rounded overflow-x-auto custom-scrollbar">
+                        <table class="min-w-full text-center text-sm text-gray-700 whitespace-nowrap">
+                            <thead class="bg-gray-50 border-b border-gray-200">
+                                <tr>
+                                    <th class="py-3 px-4 w-12 text-center"><input type="checkbox" class="text-[#cc5e2e] focus:ring-[#cc5e2e] rounded-sm"></th>
+                                    <th class="py-3 px-4 font-bold text-gray-600">資產編號</th>
+                                    <th class="py-3 px-4 font-bold text-gray-600">資產名稱</th>
+                                    <th class="py-3 px-4 font-bold text-gray-600">放置地點</th>
+                                    <th class="py-3 px-4 font-bold text-[#1f73b7] bg-blue-50">目前使用人</th>
+                                    <th class="py-3 px-4 font-bold text-[#4ca93c] bg-green-50">目前保管人</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="py-3 px-4 text-center"><input type="checkbox" class="text-[#cc5e2e] focus:ring-[#cc5e2e] rounded-sm"></td>
+                                    <td class="py-3 px-4 font-mono text-gray-600">J1201-01367</td>
+                                    <td class="py-3 px-4 text-gray-600">HPE 列表機</td>
+                                    <td class="py-3 px-4 text-gray-600">總公司 15F</td>
+                                    <td class="py-3 px-4 text-gray-600 bg-blue-50/30">王小明</td>
+                                    <td class="py-3 px-4 text-gray-600 bg-green-50/30">李大華</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="py-3 px-4 text-center"><input type="checkbox" class="text-[#cc5e2e] focus:ring-[#cc5e2e] rounded-sm"></td>
+                                    <td class="py-3 px-4 font-mono text-gray-600">J1201-01368</td>
+                                    <td class="py-3 px-4 text-gray-600">Dell 筆記型電腦</td>
+                                    <td class="py-3 px-4 text-gray-600">總公司 15F</td>
+                                    <td class="py-3 px-4 text-red-500 bg-blue-50/30">(未指派)</td>
+                                    <td class="py-3 px-4 text-gray-600 bg-green-50/30">李大華</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <div class="bg-white p-4 md:p-6 rounded-lg shadow border relative overflow-hidden">
-                    <h3 class="text-lg font-bold mb-4 text-[#4ca93c] flex items-center">
-                        <i class="fas fa-paper-plane mr-2"></i>啟用(派發)盤點單
+                    <h3 class="text-lg font-bold mb-4 text-[#cc5e2e] flex items-center">
+                        <i class="fas fa-paper-plane mr-2"></i>Step 2: 啟用(派發)盤點單
                     </h3>
-                    <p class="text-sm text-gray-500 mb-4">篩選盤點範圍，設定各級蓋章人員後，即可正式啟用並派發給相關人員。</p>
+                    <p class="text-sm text-gray-500 mb-4">確認人員指派完畢後，篩選盤點範圍，設定各級蓋章人員，即可正式啟用並派發給相關人員。</p>
 
                     <!-- Source Data Info -->
                     <div class="bg-[#f8f9fa] p-4 rounded border border-gray-200 mb-4 flex items-center justify-between">
@@ -1005,7 +925,7 @@
                     <!-- Generate Button -->
                     <div class="flex flex-col sm:flex-row justify-end gap-4 mb-6">
                         <button class="border border-[#1f73b7] text-[#1f73b7] px-6 py-2.5 rounded shadow-sm hover:bg-blue-50 font-bold flex items-center justify-center transition">
-                            <i class="fas fa-user-edit mr-2"></i> 設定蓋章人員
+                            <i class="fas fa-stamp mr-2"></i> 設定蓋章人員
                         </button>
                         <button class="bg-[#cc5e2e] text-white px-6 py-2.5 rounded shadow hover:bg-[#b55025] font-bold flex items-center justify-center transition">
                             <i class="fas fa-check-circle mr-2"></i> 啟用 (派發)
@@ -1408,13 +1328,15 @@
                 </div>
             </section>
 
-            <!-- Exec Director (Item 4-4) -->
+            <!-- Exec Director (Item 4-4) & Difference Report Merged -->
             <section id="exec_director" class="content-section">
                 <div class="logic-box">
-                    <h4 class="font-bold text-[#1f73b7] mb-1">步驟 4：盤點結果核定</h4>
-                    <p class="text-sm text-blue-700">處級主管檢視最終清冊與各級蓋章紀錄，核定後「送出歸檔」。</p>
+                    <h4 class="font-bold text-[#1f73b7] mb-1">步驟 4：盤點結果核定與差異分析</h4>
+                    <p class="text-sm text-blue-700">檢視部門盤點差異分析結果，確認無誤後「核定並歸檔」。</p>
                 </div>
-                <div class="bg-white rounded-lg shadow border p-4 md:p-6">
+                
+                <!-- 核定與歸檔 Action Box -->
+                <div class="bg-white rounded-lg shadow border p-4 md:p-6 mb-6">
                     <h3 class="font-bold mb-6 text-xl border-b pb-2">盤點結果最終核定</h3>
                     <div class="border border-gray-200 p-4 md:p-6 mb-6 rounded-lg bg-[#f8f9fa] shadow-sm flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                         <div>
@@ -1425,6 +1347,83 @@
                             <button class="w-full lg:w-auto bg-[#cc5e2e] text-white px-8 py-3 rounded shadow hover:bg-[#b55025] font-bold transition text-lg whitespace-nowrap">
                                 <i class="fas fa-check-double mr-2"></i>核定並歸檔
                             </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 差異分析報表 -->
+                <div class="bg-white rounded-lg shadow border p-4 md:p-6 mb-6">
+                    <h3 class="text-lg font-bold mb-4 text-[#1f73b7] border-b pb-2">盤點差異分析報表</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4 text-sm">
+                        <div>
+                            <label class="block font-bold text-gray-600 mb-1">盤點年度/批次</label>
+                            <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#1f73b7]">
+                                <option>2026 年度盤點 (進行中)</option>
+                                <option>2025 年度盤點 (已結案)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-gray-600 mb-1">部門別</label>
+                            <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#1f73b7]">
+                                <option>不限</option>
+                                <option>資訊處</option>
+                                <option>總務處</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-gray-600 mb-1">差異狀態</label>
+                            <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#1f73b7]">
+                                <option>全部顯示</option>
+                                <option>僅顯示盤盈</option>
+                                <option>僅顯示盤虧</option>
+                                <option>僅顯示帳料相符</option>
+                            </select>
+                        </div>
+                        <div class="flex items-end space-x-2">
+                            <button class="bg-[#1f73b7] text-white px-6 py-2 rounded text-sm hover:bg-blue-700 font-bold transition w-full">
+                                查詢差異
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded border border-gray-200 shadow-sm overflow-hidden mt-4">
+                        <div class="px-4 py-3 flex justify-between items-center bg-gray-50 border-b">
+                            <span class="font-bold text-gray-700">差異分析結果總覽</span>
+                            <button class="border border-[#4ca93c] text-[#4ca93c] px-4 py-1.5 rounded text-sm hover:bg-green-50 font-bold transition flex items-center bg-white">
+                                <i class="fas fa-file-excel mr-2"></i> 匯出報表
+                            </button>
+                        </div>
+                        <div class="overflow-x-auto custom-scrollbar">
+                            <table class="min-w-full text-center text-sm text-gray-700 whitespace-nowrap">
+                                <thead class="bg-white border-b border-gray-200">
+                                    <tr>
+                                        <th class="py-3 px-4 font-bold text-gray-600">部門</th>
+                                        <th class="py-3 px-4 font-bold text-gray-600">帳面總數量</th>
+                                        <th class="py-3 px-4 font-bold text-gray-600">實盤總數量</th>
+                                        <th class="py-3 px-4 font-bold text-gray-600">差異數量</th>
+                                        <th class="py-3 px-4 font-bold text-gray-600">差異類型</th>
+                                        <th class="py-3 px-4 font-bold text-gray-600">備註/差異原因彙整</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50 text-red-600 font-medium">
+                                        <td class="py-3 px-4">資訊處</td>
+                                        <td class="py-3 px-4">150</td>
+                                        <td class="py-3 px-4">149</td>
+                                        <td class="py-3 px-4">-1</td>
+                                        <td class="py-3 px-4"><span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">盤虧</span></td>
+                                        <td class="py-3 px-4 text-left">高階防火牆設備送修中未歸還</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 text-green-600 font-medium">
+                                        <td class="py-3 px-4">總務處</td>
+                                        <td class="py-3 px-4">320</td>
+                                        <td class="py-3 px-4">321</td>
+                                        <td class="py-3 px-4">+1</td>
+                                        <td class="py-3 px-4"><span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">盤盈</span></td>
+                                        <td class="py-3 px-4 text-left">A會議室發現多一台未列帳投影設備</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -1620,95 +1619,6 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Difference Report (差異分析報表) - NEW from FR-6.2 -->
-            <section id="report_diff" class="content-section">
-                <div class="logic-box">
-                    <h4 class="font-bold text-blue-800 mb-1"><i class="fas fa-chart-pie mr-2"></i>功能說明：</h4>
-                    <p class="text-sm text-blue-700">以盤點單為單位，依據盤點結果比對帳面數量產出盤盈、盤虧、料帳相符之差異報表。可供匯出及後續資產差異處理依據。</p>
-                </div>
-                <div class="bg-white rounded-lg shadow border p-4 md:p-6 mb-6">
-                    <h3 class="text-lg font-bold mb-4 text-[#1f73b7] border-b pb-2">盤點差異分析</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4 text-sm">
-                        <div>
-                            <label class="block font-bold text-gray-600 mb-1">盤點年度/批次</label>
-                            <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#1f73b7]">
-                                <option>2026 年度盤點 (進行中)</option>
-                                <option>2025 年度盤點 (已結案)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block font-bold text-gray-600 mb-1">部門別</label>
-                            <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#1f73b7]">
-                                <option>不限</option>
-                                <option>資訊處</option>
-                                <option>總務處</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block font-bold text-gray-600 mb-1">差異狀態</label>
-                            <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#1f73b7]">
-                                <option>全部顯示</option>
-                                <option>僅顯示盤盈</option>
-                                <option>僅顯示盤虧</option>
-                                <option>僅顯示帳料相符</option>
-                            </select>
-                        </div>
-                        <div class="flex items-end space-x-2">
-                            <button class="bg-[#1f73b7] text-white px-6 py-2 rounded text-sm hover:bg-blue-700 font-bold transition w-full">
-                                查詢差異
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded border border-gray-200 shadow-sm overflow-hidden">
-                    <div class="px-4 py-3 flex justify-between items-center bg-gray-50 border-b">
-                        <span class="font-bold text-gray-700">差異分析結果</span>
-                        <button class="border border-[#4ca93c] text-[#4ca93c] px-4 py-1.5 rounded text-sm hover:bg-green-50 font-bold transition flex items-center bg-white">
-                            <i class="fas fa-file-excel mr-2"></i> 匯出報表
-                        </button>
-                    </div>
-                    <div class="overflow-x-auto custom-scrollbar">
-                        <table class="min-w-full text-center text-sm text-gray-700 whitespace-nowrap">
-                            <thead class="bg-white border-b border-gray-200">
-                                <tr>
-                                    <th class="py-3 px-4 font-bold text-gray-600">部門</th>
-                                    <th class="py-3 px-4 font-bold text-gray-600">資產編號</th>
-                                    <th class="py-3 px-4 font-bold text-gray-600">資產名稱</th>
-                                    <th class="py-3 px-4 font-bold text-gray-600">帳面數量</th>
-                                    <th class="py-3 px-4 font-bold text-gray-600">實盤數量</th>
-                                    <th class="py-3 px-4 font-bold text-gray-600">差異數量</th>
-                                    <th class="py-3 px-4 font-bold text-gray-600">差異類型</th>
-                                    <th class="py-3 px-4 font-bold text-gray-600">備註/差異原因</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <tr class="hover:bg-gray-50 text-red-600 font-medium">
-                                    <td class="py-3 px-4">資訊處</td>
-                                    <td class="py-3 px-4 font-mono">J1201-01399</td>
-                                    <td class="py-3 px-4 text-left">高階防火牆設備</td>
-                                    <td class="py-3 px-4">1</td>
-                                    <td class="py-3 px-4">0</td>
-                                    <td class="py-3 px-4">-1</td>
-                                    <td class="py-3 px-4"><span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">盤虧</span></td>
-                                    <td class="py-3 px-4 text-left">送修中未歸還，盤點未見實體</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50 text-green-600 font-medium">
-                                    <td class="py-3 px-4">總務處</td>
-                                    <td class="py-3 px-4 font-mono">G4402-00821</td>
-                                    <td class="py-3 px-4 text-left">會議室投影機</td>
-                                    <td class="py-3 px-4">1</td>
-                                    <td class="py-3 px-4">2</td>
-                                    <td class="py-3 px-4">+1</td>
-                                    <td class="py-3 px-4"><span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">盤盈</span></td>
-                                    <td class="py-3 px-4 text-left">A會議室發現多一台未列帳投影設備</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -2244,10 +2154,10 @@
             const titles = { 
                 'dashboard': 'Dashboard', 
                 'setup_period': '盤點設定 / 盤點系統設定',
+                'setup_period_new': '盤點設定 / 設定盤點期間',
                 'setup_period_add': '盤點設定 / 盤點系統設定 / 新增盤點設定',
                 'setup_auth': '盤點設定 / 資產類別設定',
                 'data_import': '資產管理 / 盤點資料轉入',
-                'data_maintain': '資產管理 / 個別資產排除維護',
                 'role_auth': '系統管理 / 角色權限設定/查詢',
                 'user_role_assign': '系統管理 / 角色人員維護',
                 'system_logs': '系統管理 / 審計與日誌查詢',
@@ -2255,11 +2165,10 @@
                 'exec_user': '盤點作業 / 使用人盤點',
                 'exec_custodian': '盤點作業 / 保管人初盤',
                 'exec_manager': '盤點作業 / 管理人複盤',
-                'exec_director': '盤點作業 / 盤點結果核定',
+                'exec_director': '盤點作業 / 盤點結果核定與差異分析',
                 'exec_sample': '會計作業 / 抽盤作業設定',
                 'exec_sample_action': '會計作業 / 會計單位抽盤作業',
                 'query_result': '各式報表 / 盤點結果查詢 (盤點表)',
-                'report_diff': '各式報表 / 盤點差異分析報表',
                 'query_sign': '各式報表 / 盤點清冊簽核紀錄',
                 'report_history': '各式報表 / 單一資產歷史盤點查詢',
                 'asset_reprint_list': '標籤作業 / 資產標籤補印清單',
