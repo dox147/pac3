@@ -145,7 +145,7 @@
                     <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
                 </div>
                 <div class="menu-children hidden">
-                    <a href="#" onclick="showSection('data_import', event)" class="sidebar-child">盤點資料轉入</a>
+                    <a href="#" onclick="showSection('data_import', event)" class="sidebar-child">初始資料匯入</a>
                 </div>
 
                 <!-- Menu Category 2 -->
@@ -157,8 +157,8 @@
                     <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
                 </div>
                 <div class="menu-children hidden">            
-<a href="#" onclick="showSection('setup_auth', event)" class="sidebar-child">資產類別設定</a>
-<a href="#" onclick="showSection('setup_period', event)" class="sidebar-child">盤點系統設定</a>
+<a href="#" onclick="showSection('setup_auth', event)" class="sidebar-child">資產類別篩選配置</a>
+<a href="#" onclick="showSection('setup_period', event)" class="sidebar-child">啟動年度盤點</a>
 
                 </div>
 
@@ -171,7 +171,7 @@
                     <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
                 </div>
                 <div class="menu-children hidden">
-                    <a href="#" onclick="showSection('data_role_maint', event)" class="sidebar-child">管理人作業</a>
+                    <a href="#" onclick="showSection('data_role_maint', event)" class="sidebar-child">盤點計畫設定與派發</a>
                 </div>
 
                 <!-- Menu Category 4 -->
@@ -198,7 +198,7 @@
                     <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
                 </div>
                 <div class="menu-children hidden">
-                    <a href="#" onclick="showSection('exec_sample', event)" class="sidebar-child">抽盤作業設定</a>
+                    <a href="#" onclick="showSection('exec_sample', event)" class="sidebar-child">抽盤計畫設定</a>
                     <a href="#" onclick="showSection('exec_sample_action', event)" class="sidebar-child">會計單位抽盤作業</a>
                 </div>
 
@@ -536,7 +536,7 @@
                     <p class="text-sm text-blue-700">設定「大範圍」的排除邏輯。例如設定「無形資產」、「軟體」後，轉入時將自動排除該類別的所有資產。</p>
                 </div>
                 <div class="bg-white p-4 md:p-6 rounded-lg shadow border">
-                    <h3 class="font-bold mb-4 italic text-[#4ca93c]">排除資產類別設定</h3>
+                    <h3 class="font-bold mb-4 italic text-[#4ca93c]">資產類別篩選配置</h3>
                     <div class="flex flex-col sm:flex-row mb-6 gap-2">
                         <input type="text" placeholder="輸入資產類別名稱 (如:無形資產)" class="border p-2 rounded w-full sm:w-64 focus:ring-2 focus:ring-green-200 outline-none">
                         <button class="bg-[#4ca93c] text-white px-4 py-2 rounded hover:bg-green-600 transition whitespace-nowrap">新增排除類別</button>
@@ -2163,21 +2163,21 @@
             // 聯集後的 Breadcrumb 對應表
             const titles = { 
                 'dashboard': 'Dashboard', 
-                'setup_period': '盤點設定 / 盤點系統設定',
+                'setup_period': '盤點設定 / 啟動年度盤點',
                 'setup_period_new': '盤點設定 / 設定盤點期間',
-                'setup_period_add': '盤點設定 / 盤點系統設定 / 新增盤點設定',
-                'setup_auth': '盤點設定 / 資產類別設定',
-                'data_import': '資產管理 / 盤點資料轉入',
+                'setup_period_add': '盤點設定 / 啟動年度盤點 / 新增盤點設定',
+                'setup_auth': '盤點設定 / 資產類別篩選配置',
+                'data_import': '資產管理 / 初始資料匯入',
                 'data_maintain': '資產管理 / 個別資產排除維護',
                 'role_auth': '系統管理 / 角色權限設定/查詢',
                 'user_role_assign': '系統管理 / 角色人員維護',
                 'system_logs': '系統管理 / 審計與日誌查詢',
-                'data_role_maint': '盤點人員維護 / 管理人作業',
+                'data_role_maint': '盤點人員維護 / 盤點計畫設定與派發',
                 'exec_user': '盤點作業 / 使用人盤點',
                 'exec_custodian': '盤點作業 / 保管人初盤',
                 'exec_manager': '盤點作業 / 管理人複盤',
                 'exec_director': '盤點作業 / 盤點結果核定',
-                'exec_sample': '會計作業 / 抽盤作業設定',
+                'exec_sample': '會計作業 / 抽盤計畫設定',
                 'exec_sample_action': '會計作業 / 會計單位抽盤作業',
                 'query_result': '各式報表 / 盤點結果查詢 (盤點表)',
                 'query_sign': '各式報表 / 盤點清冊簽核紀錄',
