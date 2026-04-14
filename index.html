@@ -57,10 +57,21 @@
         }
         .sidebar-sub-item:hover { color: #e46c3b; }
         .sidebar-sub-item.open { color: #e46c3b; }
+
+        .sidebar-sub-sub-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 24px 10px 58px; color: #666666; font-size: 13px; font-weight: 500; cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .sidebar-sub-sub-item:hover { color: #e46c3b; }
+        .sidebar-sub-sub-item.open { color: #e46c3b; }
         
         .sidebar-child {
             display: block; padding: 10px 24px 10px 68px; color: #777777; font-size: 13px;
             border-left: 4px solid transparent; transition: all 0.2s ease;
+        }
+        .sidebar-child.level-4 {
+            padding-left: 76px;
         }
         .sidebar-child:hover { color: #e46c3b; }
         .sidebar-child.active {
@@ -148,7 +159,7 @@
                     <a href="#" onclick="showSection('data_import', event)" class="sidebar-child">初始資料匯入</a>
                 </div>
 
-                <!-- Menu Category 2 -->
+                <!-- Menu Category 2 (已併入盤點計畫設定與派發) -->
                 <div class="sidebar-sub-item" onclick="toggleMenu(this)">
                     <div class="flex items-center">
                         <i class="fas fa-cog w-5 text-center mr-2 text-[15px]"></i>
@@ -157,20 +168,8 @@
                     <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
                 </div>
                 <div class="menu-children hidden">            
-<a href="#" onclick="showSection('setup_auth', event)" class="sidebar-child">資產類別篩選配置</a>
-<a href="#" onclick="showSection('setup_period', event)" class="sidebar-child">啟動年度盤點</a>
-
-                </div>
-
-                <!-- Menu Category 3 -->
-                <div class="sidebar-sub-item" onclick="toggleMenu(this)">
-                    <div class="flex items-center">
-                        <i class="far fa-user w-5 text-center mr-2 text-[15px]"></i>
-                        <span>盤點人員維護</span>
-                    </div>
-                    <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
-                </div>
-                <div class="menu-children hidden">
+                    <a href="#" onclick="showSection('setup_auth', event)" class="sidebar-child">資產類別篩選配置</a>
+                    <a href="#" onclick="showSection('setup_period', event)" class="sidebar-child">啟動年度盤點</a>
                     <a href="#" onclick="showSection('data_role_maint', event)" class="sidebar-child">盤點計畫設定與派發</a>
                 </div>
 
@@ -239,24 +238,120 @@
                 </div>
                 <div class="menu-children hidden">
                     <a href="#" onclick="showSection('query_result', event)" class="sidebar-child">盤點結果查詢 (盤點表)</a>
-                    <!-- 移除盤點差異分析報表，已合併至核定 -->
                     <a href="#" onclick="showSection('query_sign', event)" class="sidebar-child">盤點清冊簽核紀錄</a>
-                    <a href="#" onclick="showSection('report_history', event)" class="sidebar-child">單一資產歷史盤點查詢</a>
                 </div>
             </div>
 
-            <!-- 非列帳資產盤點 入口 -->
+            <!-- 列管資產盤點 入口 -->
             <div class="sidebar-item" onclick="toggleMenu(this)">
                 <div class="flex items-center">
                     <i class="fas fa-box-open w-6 text-center mr-2 text-lg"></i>
-                    <span>非列帳資產盤點</span>
+                    <span>列管資產盤點</span>
                 </div>
                 <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
             </div>
             <div class="menu-children hidden bg-gray-50/40">
-                <a href="#" onclick="showSection('non_accounted_it', event)" class="sidebar-child">資訊列管資產盤點</a>
-                <a href="#" onclick="showSection('non_accounted_ga', event)" class="sidebar-child">總務列管資產盤點</a>
-                <a href="#" onclick="showSection('non_accounted_maint', event)" class="sidebar-child">維修列管資產盤點</a>
+                
+                <!-- 資訊處子模組 -->
+                <div class="sidebar-sub-item" onclick="toggleMenu(this)">
+                    <div class="flex items-center">
+                        <i class="fas fa-building w-5 text-center mr-2 text-[15px]"></i>
+                        <span>資訊處</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
+                </div>
+                <div class="menu-children hidden">
+                    <!-- 盤點設定 -->
+                    <div class="sidebar-sub-sub-item" onclick="toggleMenu(this)">
+                        <span>盤點設定</span>
+                        <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
+                    </div>
+                    <div class="menu-children hidden">
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 資訊處 / 盤點設定 / 初始資料匯入')" class="sidebar-child level-4">初始資料匯入</a>
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 資訊處 / 盤點設定 / 啟動年度盤點')" class="sidebar-child level-4">啟動年度盤點</a>
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 資訊處 / 盤點設定 / 盤點計畫設定與派發')" class="sidebar-child level-4">盤點計畫設定與派發</a>
+                    </div>
+                    
+                    <!-- 盤點作業 -->
+                    <div class="sidebar-sub-sub-item" onclick="toggleMenu(this)">
+                        <span>盤點作業</span>
+                        <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
+                    </div>
+                    <div class="menu-children hidden">
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 資訊處 / 盤點作業 / 使用人盤點')" class="sidebar-child level-4">使用人盤點</a>
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 資訊處 / 盤點作業 / 保管人初盤')" class="sidebar-child level-4">保管人初盤</a>
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 資訊處 / 盤點作業 / 管理人複盤')" class="sidebar-child level-4">管理人複盤</a>
+                    </div>
+
+                    <!-- 標籤作業 -->
+                    <div class="sidebar-sub-sub-item" onclick="toggleMenu(this)">
+                        <span>標籤作業</span>
+                        <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
+                    </div>
+                    <div class="menu-children hidden">
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 資訊處 / 標籤作業 / 資產標籤補印清單')" class="sidebar-child level-4">資產標籤補印清單</a>
+                    </div>
+
+                    <!-- 報表管理 -->
+                    <div class="sidebar-sub-sub-item" onclick="toggleMenu(this)">
+                        <span>報表管理</span>
+                        <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
+                    </div>
+                    <div class="menu-children hidden">
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 資訊處 / 報表管理 / 盤點報告及差異說明')" class="sidebar-child level-4">盤點報告及差異說明</a>
+                    </div>
+                </div>
+
+                <!-- 總務課子模組 -->
+                <div class="sidebar-sub-item" onclick="toggleMenu(this)">
+                    <div class="flex items-center">
+                        <i class="fas fa-building w-5 text-center mr-2 text-[15px]"></i>
+                        <span>總務課</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
+                </div>
+                <div class="menu-children hidden">
+                    <!-- 盤點設定 -->
+                    <div class="sidebar-sub-sub-item" onclick="toggleMenu(this)">
+                        <span>盤點設定</span>
+                        <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
+                    </div>
+                    <div class="menu-children hidden">
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 總務課 / 盤點設定 / 初始資料匯入')" class="sidebar-child level-4">初始資料匯入</a>
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 總務課 / 盤點設定 / 啟動年度盤點')" class="sidebar-child level-4">啟動年度盤點</a>
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 總務課 / 盤點設定 / 盤點計畫設定與派發')" class="sidebar-child level-4">盤點計畫設定與派發</a>
+                    </div>
+                    
+                    <!-- 盤點作業 -->
+                    <div class="sidebar-sub-sub-item" onclick="toggleMenu(this)">
+                        <span>盤點作業</span>
+                        <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
+                    </div>
+                    <div class="menu-children hidden">
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 總務課 / 盤點作業 / 使用人盤點')" class="sidebar-child level-4">使用人盤點</a>
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 總務課 / 盤點作業 / 保管人初盤')" class="sidebar-child level-4">保管人初盤</a>
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 總務課 / 盤點作業 / 管理人複盤')" class="sidebar-child level-4">管理人複盤</a>
+                    </div>
+
+                    <!-- 標籤作業 -->
+                    <div class="sidebar-sub-sub-item" onclick="toggleMenu(this)">
+                        <span>標籤作業</span>
+                        <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
+                    </div>
+                    <div class="menu-children hidden">
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 總務課 / 標籤作業 / 資產標籤補印清單')" class="sidebar-child level-4">資產標籤補印清單</a>
+                    </div>
+
+                    <!-- 報表管理 -->
+                    <div class="sidebar-sub-sub-item" onclick="toggleMenu(this)">
+                        <span>報表管理</span>
+                        <i class="fas fa-chevron-down text-gray-400 text-xs transition-transform duration-200"></i>
+                    </div>
+                    <div class="menu-children hidden">
+                        <a href="#" onclick="showSection('placeholder_view', event, '列管資產盤點 / 總務課 / 報表管理 / 盤點報告及差異說明')" class="sidebar-child level-4">盤點報告及差異說明</a>
+                    </div>
+                </div>
+
             </div>
         </nav>
     </aside>
@@ -669,7 +764,6 @@
                 </div>
             </section>
 
-
             <!-- Role Auth -->
             <section id="role_auth" class="content-section">
                 <div class="bg-white p-4 md:p-6 rounded-lg shadow border overflow-x-auto">
@@ -1043,14 +1137,25 @@
                         </div>
                     </div>
 
-                    <!-- Generate Button -->
-                    <div class="flex flex-col sm:flex-row justify-end gap-4 mb-6">
-                        <button class="border border-[#1f73b7] text-[#1f73b7] px-6 py-2.5 rounded shadow-sm hover:bg-blue-50 font-bold flex items-center justify-center transition">
-                            <i class="fas fa-user-edit mr-2"></i> 設定蓋章人員
-                        </button>
-                        <button class="bg-[#cc5e2e] text-white px-6 py-2.5 rounded shadow hover:bg-[#b55025] font-bold flex items-center justify-center transition">
-                            <i class="fas fa-check-circle mr-2"></i> 啟用抽盤單
-                        </button>
+                    <!-- Assign Organizer & Generate Button -->
+                    <div class="flex flex-col md:flex-row justify-between items-end md:items-center bg-green-50 p-4 rounded border border-green-100 mb-6 gap-4">
+                        <div class="flex-1 w-full md:w-auto">
+                            <label class="block text-sm font-bold text-gray-700 mb-1"><span class="text-red-500">*</span> 指派抽盤主辦</label>
+                            <select class="border p-2 rounded w-full md:w-64 focus:ring-1 focus:ring-[#4ca93c] outline-none">
+                                <option value="">請選擇抽盤主辦人員</option>
+                                <option value="user1" selected>王會計 (A0123)</option>
+                                <option value="user2">李主任 (A0124)</option>
+                            </select>
+                            <p class="text-xs text-gray-500 mt-1">此人員將負責統籌本次抽盤作業及進度追蹤。</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                            <button class="border border-[#1f73b7] text-[#1f73b7] px-6 py-2.5 rounded shadow-sm hover:bg-blue-50 font-bold flex items-center justify-center transition">
+                                <i class="fas fa-user-edit mr-2"></i> 設定蓋章人員
+                            </button>
+                            <button class="bg-[#4ca93c] text-white px-6 py-2.5 rounded shadow hover:bg-green-700 font-bold flex items-center justify-center transition">
+                                <i class="fas fa-check-circle mr-2"></i> 啟用抽盤單
+                            </button>
+                        </div>
                     </div>
 
                     <!-- History -->
@@ -1061,6 +1166,7 @@
                                 <tr>
                                     <th class="p-2">抽盤單號</th>
                                     <th class="p-2">產生時間</th>
+                                    <th class="p-2">抽盤主辦</th>
                                     <th class="p-2">篩選條件</th>
                                     <th class="p-2">樣本數</th>
                                     <th class="p-2">狀態</th>
@@ -1070,6 +1176,7 @@
                                 <tr>
                                     <td class="p-2 font-mono">CHK-202601-001</td>
                                     <td class="p-2 text-gray-500">2026/01/30 11:00</td>
+                                    <td class="p-2 font-bold text-[#1f73b7]">王會計</td>
                                     <td class="p-2 text-gray-500 text-xs">資訊處設備</td>
                                     <td class="p-2">15</td>
                                     <td class="p-2 text-[#4ca93c]">已啟用</td>
@@ -1101,7 +1208,7 @@
                                 </div>
                                 <div>
                                     <div class="font-bold text-gray-800 group-hover:text-[#4ca93c]">資訊處 - 2026 Q1 重點抽盤</div>
-                                    <div class="text-xs text-gray-500">單號: CHK-202601 | 樣本數: 15 | 截止日: 2026/02/28</div>
+                                    <div class="text-xs text-gray-500">單號: CHK-202601 | 抽盤主辦: 王會計 | 樣本數: 15 | 截止日: 2026/02/28</div>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4 w-full md:w-auto justify-end">
@@ -1635,83 +1742,6 @@
                     </div>
                 </div>
             </section>
-            
-            <!-- Asset History Query (單一資產歷史盤點查詢) - NEW from FR-6.3 -->
-            <section id="report_history" class="content-section">
-                <div class="logic-box">
-                    <h4 class="font-bold text-blue-800 mb-1"><i class="fas fa-history mr-2"></i>功能說明：</h4>
-                    <p class="text-sm text-blue-700">輸入特定資產編號，查詢該資產歷年來的所有盤點、抽盤紀錄與蓋章狀態。</p>
-                </div>
-                <div class="bg-white rounded-lg shadow border p-4 md:p-6">
-                    <h3 class="text-lg font-bold mb-4 text-[#e46c3b] border-b pb-2">歷史盤點紀錄查詢</h3>
-                    
-                    <div class="flex flex-col md:flex-row gap-4 mb-6">
-                        <div class="flex-1 max-w-md">
-                            <label class="block text-sm font-bold text-gray-600 mb-1">資產編號 / 管理編號</label>
-                            <div class="flex">
-                                <input type="text" placeholder="例: J1201-01365" class="w-full border border-gray-300 rounded-l px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#e46c3b]">
-                                <button class="bg-[#e46c3b] text-white px-4 py-2 rounded-r hover:bg-[#c9592c] font-bold transition">
-                                    <i class="fas fa-search"></i> 查詢
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Search Result Info -->
-                    <div class="bg-[#fff4ed] p-4 rounded border border-orange-200 mb-4 flex items-start gap-4">
-                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#e46c3b] flex-shrink-0 shadow-sm text-xl font-bold">
-                            <i class="fas fa-box"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800 text-lg">筆記型電腦 Dell (J1201-01365)</h4>
-                            <p class="text-sm text-gray-600 mt-1">目前所屬單位：資訊處 | 保管人：許寧 | 狀態：使用中</p>
-                        </div>
-                    </div>
-
-                    <!-- Timeline / Table of history -->
-                    <h4 class="font-bold text-gray-700 mb-3 mt-6">歷年盤點紀錄</h4>
-                    <div class="border rounded overflow-x-auto custom-scrollbar">
-                        <table class="min-w-full text-center text-sm text-gray-700 whitespace-nowrap">
-                            <thead class="bg-gray-100 border-b">
-                                <tr>
-                                    <th class="p-3 text-left">盤點年度/批次</th>
-                                    <th class="p-3 text-left">盤點類型</th>
-                                    <th class="p-3 text-left">盤點結果</th>
-                                    <th class="p-3 text-left">執行人員</th>
-                                    <th class="p-3 text-left">完成時間</th>
-                                    <th class="p-3 text-left">備註說明</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <tr class="hover:bg-gray-50">
-                                    <td class="p-3 font-medium">2026 年度盤點</td>
-                                    <td class="p-3"><span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs">初盤確認</span></td>
-                                    <td class="p-3 text-green-600 font-bold"><i class="fas fa-check-circle"></i> 相符</td>
-                                    <td class="p-3">許寧 (保管人)</td>
-                                    <td class="p-3 text-gray-500">2026/02/10 14:20</td>
-                                    <td class="p-3 text-gray-400">-</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="p-3 font-medium">2025 年度抽盤</td>
-                                    <td class="p-3"><span class="bg-purple-100 text-purple-800 px-2 py-0.5 rounded text-xs">會計抽盤</span></td>
-                                    <td class="p-3 text-green-600 font-bold"><i class="fas fa-check-circle"></i> 相符</td>
-                                    <td class="p-3">林會計</td>
-                                    <td class="p-3 text-gray-500">2025/11/05 09:30</td>
-                                    <td class="p-3 text-gray-400">條碼清晰可讀</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="p-3 font-medium">2025 年度盤點</td>
-                                    <td class="p-3"><span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs">複盤完成</span></td>
-                                    <td class="p-3 text-green-600 font-bold"><i class="fas fa-check-circle"></i> 相符</td>
-                                    <td class="p-3">陳測試 (管理人)</td>
-                                    <td class="p-3 text-gray-500">2025/03/15 16:45</td>
-                                    <td class="p-3 text-gray-400">-</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
 
             <!-- Query Sign (Inventory List Signing Record / 盤點清冊簽核紀錄) -->
             <section id="query_sign" class="content-section">
@@ -1915,25 +1945,12 @@
                 </div>
             </section>
 
-            <!-- 非列帳資產盤點 (Placeholder Sections) -->
-            <section id="non_accounted_it" class="content-section">
-                <div class="bg-white p-6 rounded-lg shadow-sm border text-center">
-                    <h2 class="text-xl font-bold text-[#1f73b7]">資訊列管資產盤點</h2>
-                    <p class="text-gray-500 mt-4">此功能正在建置中，敬請期待...</p>
-                </div>
-            </section>
-            
-            <section id="non_accounted_ga" class="content-section">
-                <div class="bg-white p-6 rounded-lg shadow-sm border text-center">
-                    <h2 class="text-xl font-bold text-[#1f73b7]">總務列管資產盤點</h2>
-                    <p class="text-gray-500 mt-4">此功能正在建置中，敬請期待...</p>
-                </div>
-            </section>
-            
-            <section id="non_accounted_maint" class="content-section">
-                <div class="bg-white p-6 rounded-lg shadow-sm border text-center">
-                    <h2 class="text-xl font-bold text-[#1f73b7]">維修列管資產盤點</h2>
-                    <p class="text-gray-500 mt-4">此功能正在建置中，敬請期待...</p>
+            <!-- 列管資產盤點共用 Placeholder Section -->
+            <section id="placeholder_view" class="content-section">
+                <div class="bg-white p-8 rounded-lg shadow-sm border text-center mt-6">
+                    <i class="fas fa-tools text-5xl text-[#e46c3b] mb-4"></i>
+                    <h2 id="placeholder-title" class="text-xl md:text-2xl font-bold text-[#1f73b7] mb-2">功能開發中</h2>
+                    <p class="text-gray-500">此模組正在建置中，敬請期待。<br>您可參考左側選單中「列帳資產盤點」對應的功能進行介面操作體驗。</p>
                 </div>
             </section>
 
@@ -2102,7 +2119,7 @@
             document.querySelectorAll('.menu-children').forEach(child => {
                 child.classList.add('hidden');
             });
-            document.querySelectorAll('.sidebar-item, .sidebar-sub-item').forEach(item => {
+            document.querySelectorAll('.sidebar-item, .sidebar-sub-item, .sidebar-sub-sub-item').forEach(item => {
                 item.classList.remove('open');
                 const icon = item.querySelector('.fa-chevron-up');
                 if(icon) {
@@ -2112,7 +2129,7 @@
             });
         }
 
-        function showSection(id, event) {
+        function showSection(id, event, customBreadcrumb) {
             if(event) event.preventDefault();
             
             // 隱藏所有區塊
@@ -2127,7 +2144,7 @@
             }
             
             // 更新側邊欄樣式
-            document.querySelectorAll('.sidebar-item, .sidebar-sub-item, .sidebar-child').forEach(i => {
+            document.querySelectorAll('.sidebar-item, .sidebar-sub-item, .sidebar-sub-sub-item, .sidebar-child').forEach(i => {
                 i.classList.remove('active');
             });
             
@@ -2168,11 +2185,10 @@
                 'setup_period_add': '盤點設定 / 啟動年度盤點 / 新增盤點設定',
                 'setup_auth': '盤點設定 / 資產類別篩選配置',
                 'data_import': '資產管理 / 初始資料匯入',
-                'data_maintain': '資產管理 / 個別資產排除維護',
                 'role_auth': '系統管理 / 角色權限設定/查詢',
                 'user_role_assign': '系統管理 / 角色人員維護',
                 'system_logs': '系統管理 / 審計與日誌查詢',
-                'data_role_maint': '盤點人員維護 / 盤點計畫設定與派發',
+                'data_role_maint': '盤點設定 / 盤點計畫設定與派發',
                 'exec_user': '盤點作業 / 使用人盤點',
                 'exec_custodian': '盤點作業 / 保管人初盤',
                 'exec_manager': '盤點作業 / 管理人複盤',
@@ -2181,16 +2197,21 @@
                 'exec_sample_action': '會計作業 / 會計單位抽盤作業',
                 'query_result': '各式報表 / 盤點結果查詢 (盤點表)',
                 'query_sign': '各式報表 / 盤點清冊簽核紀錄',
-                'report_history': '各式報表 / 單一資產歷史盤點查詢',
                 'asset_reprint_list': '標籤作業 / 資產標籤補印清單',
-                'asset_label': '標籤作業 / 列印資產標籤',
-                'non_accounted_it': '非列帳資產盤點 / 資訊列管資產盤點',
-                'non_accounted_ga': '非列帳資產盤點 / 總務列管資產盤點',
-                'non_accounted_maint': '非列帳資產盤點 / 維修列管資產盤點'
+                'asset_label': '標籤作業 / 列印資產標籤'
             };
             
-            const breadcrumbText = titles[id] || '功能開發中...';
+            const breadcrumbText = customBreadcrumb || titles[id] || '功能開發中...';
             document.getElementById('current-breadcrumb').innerText = breadcrumbText;
+            
+            // 如果是 placeholder_view，動態更新裡面顯示的文字
+            if (id === 'placeholder_view') {
+                const placeholderTitle = document.getElementById('placeholder-title');
+                if (placeholderTitle) {
+                    const parts = breadcrumbText.split(' / ');
+                    placeholderTitle.innerText = parts[parts.length - 1];
+                }
+            }
         }
     </script>
 </body>
