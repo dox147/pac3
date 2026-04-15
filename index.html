@@ -1412,9 +1412,14 @@
                 <div class="bg-white rounded-lg shadow border mb-6">
                     <div class="px-6 py-4 border-b bg-gray-50 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
                         <h3 class="font-bold text-gray-800 text-lg">待初盤單列表 (待處理: 1)</h3>
-                        <button class="border border-[#1f73b7] text-[#1f73b7] px-3 py-1.5 rounded text-sm hover:bg-blue-50 font-bold transition flex items-center shadow-sm w-full sm:w-auto justify-center">
-                            <i class="fas fa-file-upload mr-2"></i> 批次上傳初盤備註 (Excel)
-                        </button>
+                        <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                            <button class="border border-[#1f73b7] text-[#1f73b7] px-3 py-1.5 rounded text-sm hover:bg-blue-50 font-bold transition flex items-center shadow-sm w-full sm:w-auto justify-center">
+                                <i class="fas fa-file-download mr-2"></i> 批次匯出初盤備註 (Excel)
+                            </button>
+                            <button class="border border-[#1f73b7] text-[#1f73b7] px-3 py-1.5 rounded text-sm hover:bg-blue-50 font-bold transition flex items-center shadow-sm w-full sm:w-auto justify-center">
+                                <i class="fas fa-file-upload mr-2"></i> 批次上傳初盤備註 (Excel)
+                            </button>
+                        </div>
                     </div>
                     <div class="divide-y divide-gray-100">
                         <!-- Order 1: Maintenance Dept (Active) -->
@@ -1579,11 +1584,16 @@
                 
                 <!-- My Manager Orders List -->
                 <div class="bg-white rounded-lg shadow border mb-6">
-                    <div class="px-6 py-4 border-b bg-gray-50 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+                     <div class="px-6 py-4 border-b bg-gray-50 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
                         <h3 class="font-bold text-gray-800 text-lg">待複盤清冊列表 (待處理: 1)</h3>
-                        <button class="border border-[#702082] text-[#702082] px-3 py-1.5 rounded text-sm hover:bg-purple-50 font-bold transition flex items-center shadow-sm w-full sm:w-auto justify-center">
-                            <i class="fas fa-file-upload mr-2"></i> 批次上傳複盤備註 (Excel)
-                        </button>
+                        <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                            <button class="border border-[#702082] text-[#702082] px-3 py-1.5 rounded text-sm hover:bg-purple-50 font-bold transition flex items-center shadow-sm w-full sm:w-auto justify-center">
+                                <i class="fas fa-file-download mr-2"></i> 批次匯出複盤備註 (Excel)
+                            </button>
+                            <button class="border border-[#702082] text-[#702082] px-3 py-1.5 rounded text-sm hover:bg-purple-50 font-bold transition flex items-center shadow-sm w-full sm:w-auto justify-center">
+                                <i class="fas fa-file-upload mr-2"></i> 批次上傳複盤備註 (Excel)
+                            </button>
+                        </div>
                     </div>
                     <div class="divide-y divide-gray-100">
                         <!-- Order 1: Maintenance Dept (Active) -->
@@ -1687,13 +1697,13 @@
                                 <td class="p-2 bg-blue-50/20 text-left align-top border-l border-gray-200">
                                     <div class="text-sm mb-1">
                                         <span class="text-gray-500 w-12 inline-block">使用:</span>
-                                        <span class="text-[#e46c3b] font-bold"><i class="fas fa-plus-circle text-xs"></i> 盤盈</span>
-                                        <div class="text-gray-400 text-xs ml-12 truncate max-w-[10rem]">(庫房角落發現)</div>
+                                        <span class="text-[#e46c3b] font-bold"><i class="fas fa-plus-circle text-xs"></i> 相符</span>
+
                                     </div>
                                     <div class="text-sm">
                                         <span class="text-gray-500 w-12 inline-block">保管:</span>
-                                        <span class="text-[#e46c3b] font-bold"><i class="fas fa-plus-circle text-xs"></i> 盤盈</span>
-                                        <div class="text-gray-600 text-xs ml-12 truncate max-w-[10rem]">(待確認是否為報廢品)</div>
+                                        <span class="text-[#e46c3b] font-bold"><i class="fas fa-plus-circle text-xs"></i> 相符</span>
+
                                     </div>
                                 </td>
                                 <td class="p-2 bg-[#f3e8ff]/50 border-l border-purple-100 align-middle">
