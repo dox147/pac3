@@ -692,9 +692,6 @@
                             
                             <!-- Action Buttons -->
                             <div class="flex justify-start lg:justify-end space-x-3 mt-4 lg:mt-0">
-                                <button class="bg-white border border-gray-300 text-gray-700 px-6 py-2.5 rounded text-base font-bold hover:bg-gray-50 transition-colors">
-                                    取消設定
-                                </button>
                                 <button class="bg-[#cc5e2e] text-white px-8 py-2.5 rounded text-base font-bold hover:bg-[#b55025] transition-colors shadow-sm">
                                     執行轉入
                                 </button>
@@ -1399,77 +1396,326 @@
                 </div>
             </section>
 
-            <!-- Exec Custodian (Item 4-2) -->
+                        <!-- ========================================== -->
+            <!-- 步驟 2：保管人初盤 (REWORKED) -->
+            <!-- ========================================== -->
             <section id="exec_custodian" class="content-section">
                 <div class="logic-box">
                     <h4 class="font-bold text-[#1f73b7] mb-1 text-lg">步驟 2：保管人初盤</h4>
-                    <p class="text-base text-blue-700">保管人確認使用人的盤點結果，合併後進行「初盤確認與蓋章」，並送給管理人。</p>
+                    <p class="text-base text-blue-700">
+                        身為保管人，您會看到您所負責的盤點單。點擊進入後，可以檢視轄下所有使用人的盤點結果。<br>
+                        請確認使用人的結果並進行「初盤確認」，亦可針對異常項目填寫保管人備註，完成後蓋章送給管理人。
+                    </p>
                 </div>
-                <div class="bg-white rounded-lg shadow border p-4 overflow-x-auto custom-scrollbar">
-                    <div class="flex flex-col md:flex-row justify-between md:items-center mb-4 gap-3 min-w-[500px]">
-                        <h3 class="font-bold text-lg">保管資產初盤作業 <span class="bg-yellow-100 text-yellow-800 px-2 py-1 text-sm rounded ml-2 font-normal">待處理：5 件</span></h3>
-                        <!-- Add Batch Upload Remark Button as per FR-2.2 -->
-                        <button class="border border-[#1f73b7] text-[#1f73b7] px-3 py-1.5 rounded text-base hover:bg-blue-50 font-bold transition flex items-center shadow-sm">
+                
+                <!-- My Custodian Orders List -->
+                <div class="bg-white rounded-lg shadow border mb-6">
+                    <div class="px-6 py-4 border-b bg-gray-50 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+                        <h3 class="font-bold text-gray-800 text-lg">待初盤單列表 (待處理: 1)</h3>
+                        <button class="border border-[#1f73b7] text-[#1f73b7] px-3 py-1.5 rounded text-sm hover:bg-blue-50 font-bold transition flex items-center shadow-sm w-full sm:w-auto justify-center">
                             <i class="fas fa-file-upload mr-2"></i> 批次上傳初盤備註 (Excel)
                         </button>
                     </div>
-                    <table class="min-w-full text-base mb-4 border whitespace-nowrap">
-                        <thead class="bg-gray-100 border-b">
+                    <div class="divide-y divide-gray-100">
+                        <!-- Order 1: Maintenance Dept (Active) -->
+                        <div class="p-4 bg-blue-50 border-l-4 border-[#1f73b7] transition cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center group gap-4">
+                            <div class="flex items-center w-full md:w-auto">
+                                <div class="w-10 h-10 rounded-full bg-white text-[#1f73b7] flex items-center justify-center mr-4 flex-shrink-0 shadow-sm border border-blue-100">
+                                    <i class="fas fa-clipboard-check"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-[#1f73b7] text-lg">維修處 - 2026年維修設備盤點</div>
+                                    <div class="text-sm text-gray-500">單號: INV-202601-IT-992 | 截止日: 2026/02/25 | 轄下使用人數: 3位</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4 w-full md:w-auto justify-end">
+                                <div class="text-right">
+                                    <div class="text-sm text-gray-400">初盤進度 (資產數)</div>
+                                    <div class="font-bold text-[#cc5e2e] text-lg">10 / 45</div>
+                                </div>
+                                <button class="bg-[#1f73b7] text-white px-4 py-2 rounded shadow text-base hover:bg-blue-700 whitespace-nowrap">繼續初盤</button>
+                            </div>
+                        </div>
+
+                        <!-- Order 2: Operations Dept (Done) -->
+                        <div class="p-4 hover:bg-gray-50 transition cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center group gap-4 opacity-70">
+                            <div class="flex items-center w-full md:w-auto">
+                                <div class="w-10 h-10 rounded-full bg-green-100 text-[#4ca93c] flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-gray-800 group-hover:text-[#4ca93c] text-lg">運務處 - 2026年車站設施盤點</div>
+                                    <div class="text-sm text-gray-500">單號: INV-202601-OP-112 | 轄下使用人數: 5位</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4 w-full md:w-auto justify-end">
+                                <div class="text-right">
+                                    <div class="text-sm text-gray-400">初盤進度</div>
+                                    <div class="font-bold text-[#4ca93c] text-lg">120 / 120</div>
+                                </div>
+                                <button class="border border-[#4ca93c] text-[#4ca93c] px-4 py-2 rounded shadow-sm text-base hover:bg-green-50 whitespace-nowrap">檢視明細</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custodian Detail View -->
+                <div class="bg-white rounded-lg shadow border p-4 border-t-4 border-[#1f73b7] overflow-x-auto custom-scrollbar animation-fadeIn">
+                    <div class="flex flex-col md:flex-row justify-between md:items-end mb-4 gap-4 min-w-[800px]">
+                        <div>
+                            <h3 class="font-bold text-lg flex items-center text-[#1f73b7] mb-1">
+                                <i class="fas fa-list-ol mr-2"></i>初盤明細: 維修處 - 2026年維修設備盤點
+                            </h3>
+                            <p class="text-sm text-gray-500">此清單彙整了您轄下所有使用人的資產明細 (共 45 筆)</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <select class="border p-2 rounded text-sm outline-none focus:ring-1 focus:ring-[#1f73b7]">
+                                <option>篩選使用人 (全部)</option>
+                                <option>王大明 (15)</option>
+                                <option>李小華 (20)</option>
+                                <option>張三 (10)</option>
+                            </select>
+                            <select class="border p-2 rounded text-sm outline-none focus:ring-1 focus:ring-[#1f73b7]">
+                                <option>初盤狀態 (全部)</option>
+                                <option>未初盤 (35)</option>
+                                <option>已初盤 (10)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <table class="min-w-full text-base mb-4 border whitespace-nowrap text-center">
+                        <thead class="bg-gray-100 border-b border-gray-200">
                             <tr>
-                                <th class="p-2 text-left">使用人</th>
-                                <th class="p-2 text-left">資產數</th>
-                                <th class="p-2 text-left">使用人盤點狀態</th>
-                                <th class="p-2 text-left">保管人初盤</th>
+                                <th class="p-2 text-left w-24">資產編號</th>
+                                <th class="p-2 text-left w-48">資產名稱</th>
+                                <th class="p-2 text-left bg-blue-50/50">使用人</th>
+                                <th class="p-2 bg-blue-50/50">使用人結果</th>
+                                <th class="p-2 text-left bg-blue-50/50 w-32">使用人備註</th>
+                                <th class="p-2 bg-[#e6f3ff] border-l border-blue-200 w-56">保管人初盤確認 <span class="text-red-500">*</span></th>
+                                <th class="p-2 text-left bg-[#e6f3ff] w-48">保管人初盤備註</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="border-b hover:bg-gray-50">
-                                <td class="p-2">王小明</td>
-                                <td class="p-2">1</td>
-                                <td class="p-2 text-[#4ca93c] font-bold">相符</td>
-                                <td class="p-2">
-                                    <div class="flex space-x-3 text-base">
-                                        <label class="flex items-center cursor-pointer"><input type="radio" name="cust_chk1" checked class="mr-1 text-[#1f73b7] focus:ring-[#1f73b7]"> 相符</label>
-                                        <label class="flex items-center cursor-pointer"><input type="radio" name="cust_chk1" class="mr-1 text-[#1f73b7] focus:ring-[#1f73b7]"> 盤盈</label>
-                                        <label class="flex items-center cursor-pointer"><input type="radio" name="cust_chk1" class="mr-1 text-[#1f73b7] focus:ring-[#1f73b7]"> 盤虧</label>
+                        <tbody class="divide-y divide-gray-200">
+                            <!-- Row 1: Match -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-2 text-left font-mono text-sm">J1201-01366</td>
+                                <td class="p-2 text-left truncate max-w-[12rem]" title="高階檢修儀器">高階檢修儀器</td>
+                                <td class="p-2 text-left bg-blue-50/20 text-gray-700 font-medium">王大明</td>
+                                <td class="p-2 bg-blue-50/20 text-[#4ca93c] font-bold"><i class="fas fa-check-circle"></i> 相符</td>
+                                <td class="p-2 text-left bg-blue-50/20 text-gray-400 text-sm">-</td>
+                                <td class="p-2 bg-[#e6f3ff]/50 border-l border-blue-100">
+                                    <div class="flex justify-center space-x-3 text-sm">
+                                        <label class="flex items-center cursor-pointer"><input type="radio" name="c_chk1" checked class="mr-1 text-[#1f73b7] focus:ring-[#1f73b7]"> 相符</label>
+                                        <label class="flex items-center cursor-pointer"><input type="radio" name="c_chk1" class="mr-1 text-[#1f73b7] focus:ring-[#1f73b7]"> 盤盈</label>
+                                        <label class="flex items-center cursor-pointer"><input type="radio" name="c_chk1" class="mr-1 text-[#1f73b7] focus:ring-[#1f73b7]"> 盤虧</label>
                                     </div>
+                                </td>
+                                <td class="p-2 bg-[#e6f3ff]/50">
+                                    <input type="text" class="border p-1.5 w-full rounded text-sm focus:ring-[#1f73b7] outline-none bg-white" placeholder="若異常請填寫">
+                                </td>
+                            </tr>
+                            <!-- Row 2: Diff from user -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-2 text-left font-mono text-sm">J1201-01399</td>
+                                <td class="p-2 text-left truncate max-w-[12rem]" title="液壓測試機台">液壓測試機台</td>
+                                <td class="p-2 text-left bg-blue-50/20 text-gray-700 font-medium">李小華</td>
+                                <td class="p-2 bg-blue-50/20 text-[#cc5e2e] font-bold"><i class="fas fa-exclamation-triangle"></i> 盤虧</td>
+                                <td class="p-2 text-left bg-blue-50/20 text-gray-600 text-sm">送修中不在現場</td>
+                                <td class="p-2 bg-[#e6f3ff]/50 border-l border-blue-100">
+                                    <div class="flex justify-center space-x-3 text-sm">
+                                        <label class="flex items-center cursor-pointer"><input type="radio" name="c_chk2" class="mr-1 text-[#1f73b7] focus:ring-[#1f73b7]"> 相符</label>
+                                        <label class="flex items-center cursor-pointer"><input type="radio" name="c_chk2" class="mr-1 text-[#1f73b7] focus:ring-[#1f73b7]"> 盤盈</label>
+                                        <label class="flex items-center cursor-pointer"><input type="radio" name="c_chk2" checked class="mr-1 text-[#1f73b7] focus:ring-[#1f73b7]"> 盤虧</label>
+                                    </div>
+                                </td>
+                                <td class="p-2 bg-[#e6f3ff]/50">
+                                    <input type="text" class="border p-1.5 w-full rounded text-sm focus:ring-[#1f73b7] outline-none bg-white" value="已確認廠商送修單號 A123" placeholder="若異常請填寫">
+                                </td>
+                            </tr>
+                            <!-- Row 3: User hasn't checked -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-2 text-left font-mono text-sm">J1201-01402</td>
+                                <td class="p-2 text-left truncate max-w-[12rem]" title="工程筆記型電腦">工程筆記型電腦</td>
+                                <td class="p-2 text-left bg-blue-50/20 text-gray-700 font-medium">張三</td>
+                                <td class="p-2 bg-blue-50/20 text-gray-400 text-sm">未盤點</td>
+                                <td class="p-2 text-left bg-blue-50/20 text-gray-400 text-sm">-</td>
+                                <td class="p-2 bg-[#e6f3ff]/50 border-l border-blue-100">
+                                    <div class="flex justify-center space-x-3 text-sm">
+                                        <label class="flex items-center cursor-pointer text-gray-400"><input type="radio" name="c_chk3" disabled class="mr-1"> 相符</label>
+                                        <label class="flex items-center cursor-pointer text-gray-400"><input type="radio" name="c_chk3" disabled class="mr-1"> 盤盈</label>
+                                        <label class="flex items-center cursor-pointer text-gray-400"><input type="radio" name="c_chk3" disabled class="mr-1"> 盤虧</label>
+                                    </div>
+                                </td>
+                                <td class="p-2 bg-[#e6f3ff]/50">
+                                    <input type="text" disabled class="border p-1.5 w-full rounded text-sm bg-gray-100 text-gray-400 cursor-not-allowed" placeholder="需等使用人盤畢">
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="text-right flex flex-col sm:flex-row justify-end gap-2 mt-4">
-                        <button class="bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded shadow-sm hover:bg-gray-50 font-bold transition whitespace-nowrap text-base">
-                            <i class="fas fa-save mr-2"></i>儲存結果
+
+                    <div class="text-right flex flex-col sm:flex-row justify-end gap-3 mt-6">
+                        <button class="bg-white border border-gray-300 text-gray-700 px-6 py-2.5 rounded shadow-sm hover:bg-gray-50 font-bold transition whitespace-nowrap text-base">
+                            <i class="fas fa-save mr-2"></i>暫存初盤結果
                         </button>
-                        <button class="bg-[#1f73b7] text-white px-6 py-2 rounded shadow hover:bg-blue-700 font-bold transition whitespace-nowrap text-base">
+                        <!-- Add tooltip or info that all items need to be checked before submitting -->
+                        <button class="bg-[#1f73b7] text-white px-6 py-2.5 rounded shadow hover:bg-blue-700 font-bold transition whitespace-nowrap text-base opacity-70 cursor-not-allowed" title="需待所有資產完成初盤後方可蓋章">
                             <i class="fas fa-stamp mr-2"></i>初盤合併蓋章，送出給管理人
                         </button>
                     </div>
                 </div>
             </section>
 
-            <!-- Exec Manager (Item 4-3) -->
+<!-- ========================================== -->
+            <!-- 步驟 3：管理人複盤 (REWORKED) -->
+            <!-- ========================================== -->
             <section id="exec_manager" class="content-section">
                 <div class="logic-box">
-                    <h4 class="font-bold text-[#1f73b7] mb-1 text-lg">步驟 3：管理人複盤</h4>
-                    <p class="text-base text-blue-700">管理人彙整各保管人的初盤結果，合併成該單位清冊，「蓋章」後呈報給處級主管。</p>
+                    <h4 class="font-bold text-[#702082] mb-1 text-lg">步驟 3：管理人複盤</h4>
+                    <p class="text-base text-purple-800">
+                        管理人將看到該管理單位（如：維修處）的盤點清冊。此清冊彙整了轄下所有保管人送交的初盤結果。<br>
+                        您可檢視「使用人」與「保管人」的盤點歷程與備註，進行複盤判定，最後「蓋章」呈報給處級主管。
+                    </p>
                 </div>
-                <div class="bg-white rounded-lg shadow border p-4 md:p-6">
-                    <h3 class="font-bold mb-4 text-lg">部門盤點清冊複盤</h3>
-                    <div class="bg-[#f8f9fa] p-4 mb-6 border border-gray-200 rounded">
-                        <p class="font-bold text-gray-800 text-xl mb-1">維修處 2026年第一次盤點清冊</p>
-                        <p class="text-base text-gray-500">總筆數：<span class="font-bold text-gray-700">150</span> / 異常：<span class="font-bold text-[#cc5e2e]">0</span> / 已初盤：<span class="font-bold text-[#4ca93c]">150</span></p>
+                
+                <!-- My Manager Orders List -->
+                <div class="bg-white rounded-lg shadow border mb-6">
+                    <div class="px-6 py-4 border-b bg-gray-50 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+                        <h3 class="font-bold text-gray-800 text-lg">待複盤清冊列表 (待處理: 1)</h3>
+                        <button class="border border-[#702082] text-[#702082] px-3 py-1.5 rounded text-sm hover:bg-purple-50 font-bold transition flex items-center shadow-sm w-full sm:w-auto justify-center">
+                            <i class="fas fa-file-upload mr-2"></i> 批次上傳複盤備註 (Excel)
+                        </button>
                     </div>
-                    <div class="text-right flex flex-col sm:flex-row justify-end items-center gap-2">
-                        <!-- Add Batch Upload Remark Button as per FR-2.4 -->
-                        <button class="border border-[#702082] text-[#702082] px-4 py-2 rounded shadow-sm hover:bg-purple-50 font-bold transition flex items-center whitespace-nowrap text-base">
-                            <i class="fas fa-file-upload mr-2"></i> 批次上傳複盤備註
+                    <div class="divide-y divide-gray-100">
+                        <!-- Order 1: Maintenance Dept (Active) -->
+                        <div class="p-4 bg-purple-50 border-l-4 border-[#702082] transition cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center group gap-4">
+                            <div class="flex items-center w-full md:w-auto">
+                                <div class="w-10 h-10 rounded-full bg-white text-[#702082] flex items-center justify-center mr-4 flex-shrink-0 shadow-sm border border-purple-100">
+                                    <i class="fas fa-layer-group"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-[#702082] text-lg">維修處 2026年第一次盤點清冊</div>
+                                    <div class="text-sm text-gray-500">單號: INV-202601-IT-FULL | 轄下保管人數: 4位</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-6 w-full md:w-auto justify-end">
+                                <div class="text-right hidden sm:block">
+                                    <div class="text-sm text-gray-400">初盤完成度</div>
+                                    <div class="font-bold text-[#4ca93c] text-base">150 / 150</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-sm text-gray-400">複盤進度</div>
+                                    <div class="font-bold text-[#cc5e2e] text-lg">0 / 150</div>
+                                </div>
+                                <button class="bg-[#702082] text-white px-4 py-2 rounded shadow text-base hover:bg-purple-800 whitespace-nowrap">進入複盤</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manager Detail View -->
+                <div class="bg-white rounded-lg shadow border p-4 border-t-4 border-[#702082] overflow-x-auto custom-scrollbar animation-fadeIn">
+                    <div class="flex flex-col md:flex-row justify-between md:items-end mb-4 gap-4 min-w-[1000px]">
+                        <div>
+                            <h3 class="font-bold text-lg flex items-center text-[#702082] mb-1">
+                                <i class="fas fa-tasks mr-2"></i>複盤明細: 維修處 2026年第一次盤點清冊
+                            </h3>
+                            <p class="text-sm text-gray-500">單位總筆數：<span class="font-bold">150</span> 筆 | 異常項目：<span class="text-[#cc5e2e] font-bold">2</span> 筆 (預設優先顯示異常項目)</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <select class="border p-2 rounded text-sm outline-none focus:ring-1 focus:ring-[#702082]">
+                                <option>保管人 (全部)</option>
+                                <option>許寧</option>
+                                <option>陳建國</option>
+                            </select>
+                            <select class="border p-2 rounded text-sm outline-none focus:ring-1 focus:ring-[#702082]">
+                                <option>顯示全部項目</option>
+                                <option selected>僅顯示初盤異常 (2)</option>
+                                <option>尚未複盤項目 (150)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <table class="min-w-full text-base mb-4 border whitespace-nowrap text-center">
+                        <thead class="bg-gray-100 border-b border-gray-200">
+                            <tr>
+                                <th class="p-2 text-left w-24">資產編號</th>
+                                <th class="p-2 text-left w-40">資產名稱</th>
+                                <th class="p-2 text-left bg-gray-50 w-20">保管人</th>
+                                <th class="p-2 text-left bg-gray-50 w-20">使用人</th>
+                                <th class="p-2 bg-blue-50/50 w-48 text-left border-l border-gray-200">初盤歷程 (使用人/保管人)</th>
+                                <th class="p-2 bg-[#f3e8ff] border-l border-purple-200 w-56 text-[#702082]">管理人複盤確認 <span class="text-red-500">*</span></th>
+                                <th class="p-2 text-left bg-[#f3e8ff] w-48 text-[#702082]">管理人複盤備註</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <!-- Row 1: Diff Case -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-2 text-left font-mono text-sm align-top pt-3">J1201-01399</td>
+                                <td class="p-2 text-left truncate max-w-[10rem] align-top pt-3" title="液壓測試機台">液壓測試機台</td>
+                                <td class="p-2 text-left text-gray-700 font-medium align-top pt-3 bg-gray-50/50">許寧</td>
+                                <td class="p-2 text-left text-gray-700 font-medium align-top pt-3 bg-gray-50/50">李小華</td>
+                                <td class="p-2 bg-blue-50/20 text-left align-top border-l border-gray-200">
+                                    <div class="text-sm mb-1">
+                                        <span class="text-gray-500 w-12 inline-block">使用:</span>
+                                        <span class="text-[#cc5e2e] font-bold"><i class="fas fa-times-circle text-xs"></i> 盤虧</span>
+                                        <div class="text-gray-400 text-xs ml-12 truncate max-w-[10rem]" title="送修中不在現場">(送修中不在現場)</div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <span class="text-gray-500 w-12 inline-block">保管:</span>
+                                        <span class="text-[#cc5e2e] font-bold"><i class="fas fa-times-circle text-xs"></i> 盤虧</span>
+                                        <div class="text-gray-600 text-xs ml-12 truncate max-w-[10rem]" title="已確認廠商送修單號 A123">(已確認廠商送修單號 A123)</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 bg-[#f3e8ff]/50 border-l border-purple-100 align-middle">
+                                    <div class="flex justify-center space-x-3 text-sm">
+                                        <label class="flex items-center cursor-pointer"><input type="radio" name="m_chk1" class="mr-1 text-[#702082] focus:ring-[#702082]"> 相符</label>
+                                        <label class="flex items-center cursor-pointer"><input type="radio" name="m_chk1" class="mr-1 text-[#702082] focus:ring-[#702082]"> 盤盈</label>
+                                        <label class="flex items-center cursor-pointer"><input type="radio" name="m_chk1" class="mr-1 text-[#702082] focus:ring-[#702082]"> 盤虧</label>
+                                    </div>
+                                </td>
+                                <td class="p-2 bg-[#f3e8ff]/50 align-middle">
+                                    <input type="text" class="border p-1.5 w-full rounded text-sm focus:ring-[#702082] outline-none bg-white" placeholder="填寫複盤結論">
+                                </td>
+                            </tr>
+                            
+                            <!-- Row 2: Diff Case 2 -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-2 text-left font-mono text-sm align-top pt-3">J1201-01415</td>
+                                <td class="p-2 text-left truncate max-w-[10rem] align-top pt-3" title="備用顯示器 (未列帳)">備用顯示器 (未列帳)</td>
+                                <td class="p-2 text-left text-gray-700 font-medium align-top pt-3 bg-gray-50/50">陳建國</td>
+                                <td class="p-2 text-left text-gray-700 font-medium align-top pt-3 bg-gray-50/50">陳建國</td>
+                                <td class="p-2 bg-blue-50/20 text-left align-top border-l border-gray-200">
+                                    <div class="text-sm mb-1">
+                                        <span class="text-gray-500 w-12 inline-block">使用:</span>
+                                        <span class="text-[#e46c3b] font-bold"><i class="fas fa-plus-circle text-xs"></i> 盤盈</span>
+                                        <div class="text-gray-400 text-xs ml-12 truncate max-w-[10rem]">(庫房角落發現)</div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <span class="text-gray-500 w-12 inline-block">保管:</span>
+                                        <span class="text-[#e46c3b] font-bold"><i class="fas fa-plus-circle text-xs"></i> 盤盈</span>
+                                        <div class="text-gray-600 text-xs ml-12 truncate max-w-[10rem]">(待確認是否為報廢品)</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 bg-[#f3e8ff]/50 border-l border-purple-100 align-middle">
+                                    <div class="flex justify-center space-x-3 text-sm">
+                                        <label class="flex items-center cursor-pointer"><input type="radio" name="m_chk2" class="mr-1 text-[#702082] focus:ring-[#702082]"> 相符</label>
+                                        <label class="flex items-center cursor-pointer"><input type="radio" name="m_chk2" class="mr-1 text-[#702082] focus:ring-[#702082]"> 盤盈</label>
+                                        <label class="flex items-center cursor-pointer"><input type="radio" name="m_chk2" class="mr-1 text-[#702082] focus:ring-[#702082]"> 盤虧</label>
+                                    </div>
+                                </td>
+                                <td class="p-2 bg-[#f3e8ff]/50 align-middle">
+                                    <input type="text" class="border p-1.5 w-full rounded text-sm focus:ring-[#702082] outline-none bg-white" placeholder="填寫複盤結論">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="text-right flex flex-col sm:flex-row justify-end gap-3 mt-6">
+                        <button class="bg-white border border-gray-300 text-gray-700 px-6 py-2.5 rounded shadow-sm hover:bg-gray-50 font-bold transition whitespace-nowrap text-base">
+                            <i class="fas fa-save mr-2"></i>暫存複盤結果
                         </button>
-                        <button class="bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded shadow-sm hover:bg-gray-50 font-bold transition whitespace-nowrap text-base">
-                            <i class="fas fa-save mr-2"></i>儲存結果
-                        </button>
-                        <button class="bg-[#1f73b7] text-white px-6 py-2 rounded shadow hover:bg-blue-700 font-bold transition whitespace-nowrap text-base">
-                            <i class="fas fa-file-signature mr-2"></i>複盤確認蓋章，送處級主管核定
+                        <button class="bg-[#702082] text-white px-6 py-2.5 rounded shadow hover:bg-purple-800 font-bold transition whitespace-nowrap text-base">
+                            <i class="fas fa-file-signature mr-2"></i>複盤確認蓋章，呈報處級主管
                         </button>
                     </div>
                 </div>
@@ -1524,22 +1770,6 @@
                                     <td class="py-3 px-4">-1</td>
                                     <td class="py-3 px-4"><span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">盤虧</span></td>
                                     <td class="py-3 px-4 text-left">包含1件送修中未歸還，盤點未見實體</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50 text-green-600 font-medium">
-                                    <td class="py-3 px-4">運務處</td>
-                                    <td class="py-3 px-4">300</td>
-                                    <td class="py-3 px-4">301</td>
-                                    <td class="py-3 px-4">+1</td>
-                                    <td class="py-3 px-4"><span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">盤盈</span></td>
-                                    <td class="py-3 px-4 text-left">售票大廳發現多一台未列帳導覽機</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50 text-gray-600 font-medium">
-                                    <td class="py-3 px-4">財務處</td>
-                                    <td class="py-3 px-4">45</td>
-                                    <td class="py-3 px-4">45</td>
-                                    <td class="py-3 px-4">0</td>
-                                    <td class="py-3 px-4"><span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm">相符</span></td>
-                                    <td class="py-3 px-4 text-left">無差異</td>
                                 </tr>
                             </tbody>
                         </table>
